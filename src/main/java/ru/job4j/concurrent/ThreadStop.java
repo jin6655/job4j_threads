@@ -5,13 +5,12 @@ public class ThreadStop {
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(
                 () -> {
-                    int count = 0;
                     while (!Thread.currentThread().isInterrupted()) {
-                        System.out.println(count++);
                         try {
-                            Thread.sleep(300);
+                            System.out.println("start ...");
+                            Thread.sleep(2000);
                         } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                            Thread.currentThread().interrupt();
                         }
                     }
                 }
@@ -19,6 +18,7 @@ public class ThreadStop {
         thread.start();
         Thread.sleep(1000);
         thread.interrupt();
+        thread.join();
     }
 
 }
