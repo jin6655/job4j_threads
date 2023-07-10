@@ -38,7 +38,13 @@ public class Caty {
     }
 
     public static void main(String[] args) {
-        System.out.println("!");
+        int x = 1;
+        int y = 1;
+        if (x == 2 && y == 1) {
+            System.out.println(true);
+        } else {
+            System.out.println(false);
+        }
     }
 
 }
