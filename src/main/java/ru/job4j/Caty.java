@@ -41,9 +41,13 @@ public class Caty {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        for (int i = 1; i <= 10; i++) {
-            System.out.print("\r Load " + i);
-            TimeUnit.MILLISECONDS.sleep(300);
+        int count = 0;
+        while (true) {
+            System.out.println("! " + count++);
+            if (count == 10) {
+                count = 0;
+            }
+            TimeUnit.MILLISECONDS.sleep(100);
         }
     }
 
