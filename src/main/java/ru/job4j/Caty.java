@@ -1,6 +1,9 @@
 package ru.job4j;
 
+import java.sql.SQLOutput;
+import java.sql.Time;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class Caty {
 
@@ -37,13 +40,10 @@ public class Caty {
         return Objects.hash(x, name);
     }
 
-    public static void main(String[] args) {
-        int x = 1;
-        int y = 1;
-        if (x == 2 && y == 1) {
-            System.out.println(true);
-        } else {
-            System.out.println(false);
+    public static void main(String[] args) throws InterruptedException {
+        for (int i = 1; i <= 10; i++) {
+            System.out.print("\r Load " + i);
+            TimeUnit.MILLISECONDS.sleep(300);
         }
     }
 
