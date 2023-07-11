@@ -40,15 +40,8 @@ public class Caty {
         return Objects.hash(x, name);
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        int count = 0;
-        while (true) {
-            System.out.println("! " + count++);
-            if (count == 10) {
-                count = 0;
-            }
-            TimeUnit.MILLISECONDS.sleep(100);
-        }
+    public static void main(String[] args) {
+        System.out.println("!");
     }
 
 }
