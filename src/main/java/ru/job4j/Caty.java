@@ -4,6 +4,7 @@ import java.sql.SQLOutput;
 import java.sql.Time;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Caty {
 
@@ -41,7 +42,13 @@ public class Caty {
     }
 
     public static void main(String[] args) {
-        System.out.println("!");
+        AtomicInteger atomic = new AtomicInteger(0);
+        int i = 1;
+
+        int x = 10;
+        int y;
+        y = atomic.get();
+        System.out.println(y);
     }
 
 }
