@@ -1,19 +1,21 @@
 package ru.job4j;
 
-import java.sql.SQLOutput;
-import java.sql.Time;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Caty {
+
+    public static final String AGE = "18";
 
     private int x;
     private String name;
 
     public Caty(int x, String name) {
-        this.x = x;
-        this.name = name;
+        if (x >= 101) {
+            throw  new IllegalArgumentException("Полe x объекта Caty должно удовлетоварять условию x >= 100.");
+        } else {
+            this.x = x;
+            this.name = name;
+        }
     }
 
     @Override
@@ -42,13 +44,7 @@ public class Caty {
     }
 
     public static void main(String[] args) {
-        AtomicInteger atomic = new AtomicInteger(0);
-        int i = 1;
-
-        int x = 10;
-        int y;
-        y = atomic.get();
-        System.out.println(y);
+        System.out.println("!");
     }
 
 }

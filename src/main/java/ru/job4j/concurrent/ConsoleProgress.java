@@ -14,7 +14,7 @@ public class ConsoleProgress implements Runnable {
                 count = 0;
             }
             try {
-                Thread.sleep(500);
+                Thread.sleep(400);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -24,9 +24,9 @@ public class ConsoleProgress implements Runnable {
     public static void main(String[] args) throws InterruptedException {
         Thread progress = new Thread(new ConsoleProgress());
         progress.start();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         progress.interrupt();
-        System.out.println("\nend");
+        System.out.println("\rend");
 
     }
 

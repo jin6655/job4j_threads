@@ -10,11 +10,11 @@ public class Wget {
                     try {
                         for (int i = 1; i <= 100; i++) {
                             System.out.print("\rLoading : " + i + "%");
-                            Thread.sleep(1000);
+                            Thread.sleep(100);
                         }
                         System.out.println("\rLoaded.");
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        Thread.currentThread().interrupt();
                     }
                 }
         );
