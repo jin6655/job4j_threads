@@ -7,7 +7,7 @@ public final class Singleton {
     private final String name = "Anna";
     private static volatile Singleton instance;
 
-    private Singleton() {
+    public Singleton() {
     }
 
     public static synchronized Singleton getInstance () {
@@ -30,6 +30,10 @@ public final class Singleton {
         return "Singleton{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Singleton.getInstance().getName());
     }
 
 }
