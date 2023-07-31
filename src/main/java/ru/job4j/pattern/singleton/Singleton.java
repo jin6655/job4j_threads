@@ -1,6 +1,4 @@
-package ru.job4j.pattern;
-
-import ru.job4j.Caty;
+package ru.job4j.pattern.singleton;
 
 public final class Singleton {
 
