@@ -19,8 +19,19 @@ public class UserCache {
     }
 
     public List<User> findAll() {
-        ConcurrentHashMap<Integer, User> map = users;
+        ConcurrentHashMap<Integer, User> map = new ConcurrentHashMap<>();
         return new ArrayList<>(map.values());
+    }
+
+    public static void main(String[] args) {
+        UserCache u = new UserCache();
+        u.users.put(1, User.of("aaaa"));
+        u.users.put(2, User.of("bbbbb"));
+        List<User> list = u.findAll();
+        System.out.println(list);
+        list.get(0).setName("fffff");
+        System.out.println(list);
+        System.out.println(u.findAll());
     }
 
 }

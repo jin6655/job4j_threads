@@ -18,7 +18,7 @@ public class ThreadStop {
         thread.start();
         Thread.sleep(1000);
         thread.interrupt();
-        thread.join();
+        thread.join(100);
     }
 
 }

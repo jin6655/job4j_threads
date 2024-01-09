@@ -8,13 +8,14 @@ import java.util.Iterator;
 import java.util.List;
 
 @ThreadSafe
-public class SingleLockList<T> implements Iterable<T> {
+public class SingleLockList<T> implements Iterable<T>, Cloneable {
 
     @GuardedBy("this")
     private final List<T> list;
 
     public SingleLockList(List<T> list) {
         this.list = copy(list);
+        //this.list = (List) list.clone();
     }
 
     public SingleLockList() {

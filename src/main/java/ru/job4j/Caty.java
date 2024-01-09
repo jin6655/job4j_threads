@@ -1,21 +1,30 @@
 package ru.job4j;
 
 import java.util.Objects;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class Caty {
 
-    public static final String AGE = "18";
+    private int x = 1;
 
-    private int x;
+    private int iteration = 0;
     private String name;
 
+    public Caty() {
+    }
+
     public Caty(int x, String name) {
-        if (x >= 101) {
-            throw  new IllegalArgumentException("Полe x объекта Caty должно удовлетоварять условию x >= 100.");
-        } else {
-            this.x = x;
-            this.name = name;
-        }
+        this.x = x;
+        this.name = name;
+    }
+
+    public int counter () {
+        return x++;
+    }
+
+    public int iteration () {
+        return iteration++;
     }
 
     @Override
@@ -43,7 +52,7 @@ public class Caty {
         return Objects.hash(x, name);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("!");
     }
 

@@ -5,11 +5,22 @@ public class User {
     private int id;
     private String name;
 
+    /*public User(User newUser) {
+        User u = new User();
+        u.setName(newUser.getName());
+        u.setId(newUser.getId());
+    }
+     */
+
     public static User of(String name) {
         User user = new User();
         user.name = name;
         return user;
     }
+
+    public User () {
+    }
+
     public int getId() {
         return id;
     }
@@ -23,4 +34,11 @@ public class User {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -2,7 +2,7 @@ package ru.job4j.concurrent;
 
 public class Flag {
 
-    private static boolean flag = true;
+    private static volatile boolean flag = true;
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(
                 () -> {
