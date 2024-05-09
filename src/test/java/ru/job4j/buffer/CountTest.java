@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class CountTest {
 
-    private class ThreadCount extends Thread {
+    private static class ThreadCount extends Thread {
         private final Count count;
         private ThreadCount(final Count count) {
             this.count = count;

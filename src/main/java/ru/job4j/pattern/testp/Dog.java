@@ -22,7 +22,7 @@ public class Dog {
         System.out.println("dog02 = " + dog02);
         System.out.println("dog03 = " + dog03);
         System.out.println("______________");
-        dog.name = "Foks";
+        dog.name = "Forks_name";
         System.out.println("dog01 = " + dog01);
         System.out.println("dog02 = " + dog02);
         System.out.println("dog03 = " + dog03);

@@ -1,8 +1,8 @@
 package ru.job4j.synch;
 
 import org.junit.Test;
+import ru.job4j.concurrent.SingleLockList;
 
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 

@@ -11,6 +11,9 @@ public class SimpleBlockingQueue<T> {
 
     private int capacity;
 
+    @GuardedBy("this")
+    private Queue<T> queue = new LinkedList<>();
+
     public SimpleBlockingQueue(int count) {
         this.capacity = count;
     }
@@ -18,9 +21,6 @@ public class SimpleBlockingQueue<T> {
     public Queue<T> getQueue() {
         return queue;
     }
-
-    @GuardedBy("this")
-    private Queue<T> queue = new LinkedList<>();
 
     public void offer(T value) {
         synchronized (this) {
@@ -36,18 +36,18 @@ public class SimpleBlockingQueue<T> {
         }
     }
 
-    public T poll() {
+    public T poll() throws InterruptedException {
         synchronized (this) {
         while (queue.size() == 0) {
-            try {
                 this.wait();
-                this.notify();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
-        }
+        this.notify();
         return queue.poll();
+        }
+    }
+
+    public boolean isEmpty () {
+        return queue.size() == 0;
     }
 
 }
