@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class SimpleBlockingQueueTest {
 
     @Test
-    public void whenCountFive() throws InterruptedException {
+    public void whenCountTen() throws InterruptedException {
         Random randomNum = new Random();
         SimpleBlockingQueue<Integer> simpleBlockingQueue = new SimpleBlockingQueue<>(10);
         Thread threadOffer = new Thread(
@@ -105,6 +105,58 @@ public class SimpleBlockingQueueTest {
         consumer.start();
         consumer.interrupt();
         assertEquals(Arrays.asList(1, 2, 3, 4, 5), list);
+    }
+
+    @Test
+    public void whenCountThree() throws InterruptedException {
+        SimpleBlockingQueue simpleBlockingQueue = new SimpleBlockingQueue<>(3);
+        Thread threadPolll = new Thread(
+                () -> {
+                    while (!Thread.currentThread().isInterrupted()) {
+                        try {
+                            for (int i = 0; i < 8; i++) {
+                                Thread.sleep(800);
+                                simpleBlockingQueue.poll();
+                                System.out.println("Извлечение элемента из очереди, итерация " + (i + 1));
+                            }
+                        } catch (InterruptedException e) {
+                            while (simpleBlockingQueue.getQueue().size() > 2) {
+                                try {
+                                    Thread.sleep(800);
+                                    simpleBlockingQueue.poll();
+                                    System.out.println("Извлечение элемента из очереди, после завершения добавления");
+                                } catch (InterruptedException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                            }
+                            System.out.println(simpleBlockingQueue.getQueue().size());
+                            Thread.currentThread().interrupt();
+                        }
+                    }
+                }
+        );
+        Thread threadOffer = new Thread(
+                () -> {
+                    try {
+                        for (int i = 0; i < 10; i++) {
+                            Thread.sleep(300);
+                            System.out.println("Добавление элемента в очередь " + (i + 1));
+                            simpleBlockingQueue.offer(i);
+                        }
+                        System.out.println("Все элементы добавлены в очередь");
+                        threadPolll.interrupt();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        Thread.currentThread().interrupt();
+                    }
+                }
+        );
+        threadPolll.start();
+        threadOffer.start();
+        Thread.sleep(10000);
+        int expected = 2;
+        int rsl = simpleBlockingQueue.getQueue().size();
+        assertThat(expected, Matchers.is(rsl));
     }
 
 }

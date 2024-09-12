@@ -1,12 +1,9 @@
 package ru.job4j;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Caty {
 
@@ -59,23 +56,12 @@ public class Caty {
         return super.clone();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        Thread thread = new Thread(
-                () -> {
-                    while (!Thread.currentThread().isInterrupted()) {
-                        for (int i = 0; i < 5; i++) {
-                            System.out.print(i + " ");
-                            System.out.println(Thread.currentThread().getName());
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
-                                break;
-                            }
-                        }
-                    }
-                }, "thread_Anna"
-        );
+    public int sum (int x, int y) {
+        return x + y;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("!");
     }
 
 }

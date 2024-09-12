@@ -14,12 +14,19 @@ public class SimpleBlockingQueue<T> {
     @GuardedBy("this")
     private Queue<T> queue = new LinkedList<>();
 
+    public SimpleBlockingQueue() {
+    }
+
     public SimpleBlockingQueue(int count) {
         this.capacity = count;
     }
 
     public Queue<T> getQueue() {
         return queue;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public void offer(T value) {
@@ -32,7 +39,7 @@ public class SimpleBlockingQueue<T> {
                 }
             }
             queue.offer(value);
-            this.notify();
+            this.notifyAll();
         }
     }
 
@@ -41,7 +48,7 @@ public class SimpleBlockingQueue<T> {
         while (queue.size() == 0) {
                 this.wait();
         }
-        this.notify();
+        this.notifyAll();
         return queue.poll();
         }
     }
